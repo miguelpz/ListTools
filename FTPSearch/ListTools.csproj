@@ -49,7 +49,10 @@
   <ItemGroup>
     <Compile Include="Contracts\IJsonService.cs" />
     <Compile Include="Contracts\IFileManagementService.cs" />
+    <Compile Include="DTO\AutomatizaDTO.cs" />
     <Compile Include="DTO\MatchDTO.cs" />
+    <Compile Include="DTO\TareaDTO.cs" />
+    <Compile Include="DTO\TslData.cs" />
     <Compile Include="Repositories\IJiraRepository.cs" />
     <Compile Include="Repositories\JiraRepository.cs" />
     <Compile Include="Services\AccessExternalService.cs" />

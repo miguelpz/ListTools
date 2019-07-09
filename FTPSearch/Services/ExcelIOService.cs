@@ -27,11 +27,11 @@ namespace FTPSearch.Services
             int totalRows = xlRange.Rows.Count;
             int totalColumns = xlRange.Columns.Count;
 
-            int initRow = 0;
+            int initRow = 1;
 
             if (hasTitle)
             {
-                initRow = 1;
+                initRow = 2;
             }
 
             for (int rowCount = initRow; rowCount <= totalRows; rowCount++)
@@ -46,15 +46,55 @@ namespace FTPSearch.Services
         }
 
 
+        public bool WriteListInColumn(int sheet,int column, IEnumerable<string> nameList,int sinceRow, bool hasTitle)
+        {
+            string filePath = ConfigurationManager.AppSettings["ExcelWriteFile"];
+
+            Application xlApp = new Application();
+            object misValue = System.Reflection.Missing.Value;
+
+            Workbook xlWorkBook = xlApp.Workbooks.Open(filePath);
+            Worksheet xlWorkSheet = (Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            int initRow = sinceRow;
+
+            if (hasTitle)
+            {
+                initRow++;
+            }
+
+
+            foreach (string name in nameList)
+            {
+                initRow++;
+                xlWorkSheet.Cells[initRow, column] = name;
+            }
+
+            try
+            {
+                xlWorkBook.Save();
+                xlWorkBook.Close();
+                xlApp.Quit();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
         public bool WriteListInColumn(int sheet, int column, IEnumerable<string> nameList, bool hasTitle)
         {
 
-            if (!IsColumEmpty(sheet,column))
-            {
-                throw new Exception("Column aren't Empty!");
-            }
+            //if (!IsColumEmpty(sheet,column))
+            //{
+            //    throw new Exception("Column aren't Empty!");
+            //}
 
-            string filePath = ConfigurationManager.AppSettings["Excel"];
+            string filePath = ConfigurationManager.AppSettings["ExcelWriteFile"];
 
             Application xlApp = new Application();
             object misValue = System.Reflection.Missing.Value;
@@ -90,6 +130,8 @@ namespace FTPSearch.Services
             return true;
             
         }
+
+       
 
         private bool IsColumEmpty(int sheet, int column)
         {

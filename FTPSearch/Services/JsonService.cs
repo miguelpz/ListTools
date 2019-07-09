@@ -26,5 +26,10 @@ namespace FTPSearch.Services
         {
             return JsonConvert.DeserializeObject<List<MatchDTO>>(File.ReadAllText(@ConfigurationManager.AppSettings["JsonFile"]));
         }
+
+        public IEnumerable<string> LoadListJsonFile()
+        {
+            return JsonConvert.DeserializeObject<IEnumerable<string>>(File.ReadAllText(@ConfigurationManager.AppSettings["JsonListFile"]));
+        }
     }
 }

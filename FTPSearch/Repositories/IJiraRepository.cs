@@ -9,5 +9,7 @@ namespace FTPSearch.Repositories
     public interface IJiraRepository
     {
         string GetOwnerFromApp(string app);
+        void SendPost(string json);
+        IEnumerable<string> GetTicketReport(IEnumerable<string> tickets);
     }
 }

@@ -41,5 +41,21 @@ namespace FTPSearch.Services
             return _usersList;
         }
 
+        public string GetReportersString (IEnumerable<string> tickets)
+        {
+            string result = "";
+
+            var response =  _jiraRepository.GetTicketReport(tickets);
+
+            foreach( string element in response)
+            {
+                result += element + ", ";
+            }
+
+            return result.Remove(result.Length - 1);
+          
+
+        }
+
     }
 }

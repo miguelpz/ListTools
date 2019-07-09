@@ -34,6 +34,12 @@ namespace FTPSearch.Services
             return GetFiles(_dir);
         }
 
+        public List<FileInfo> GetJsonFiles()
+        {
+            typeFile = "*.json";
+            return GetFiles(_dir);
+        }
+
         private List<FileInfo> GetFiles(DirectoryInfo dir)
         {
             List<FileInfo> res = dir.GetFiles(typeFile).ToList();

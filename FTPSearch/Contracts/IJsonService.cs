@@ -11,5 +11,6 @@ namespace FTPSearch.Contracts
     {
         void SaveToJson(List<MatchDTO> list);
         List<MatchDTO> LoadToJson();
+        IEnumerable<string> LoadListJsonFile();
     }
 }

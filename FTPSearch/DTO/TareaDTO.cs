@@ -27,15 +27,15 @@ namespace FTPSearch.DTO
 
 
 
-        public TareaDTO(AutomatizaDTO tareaData)
+        public TareaDTO(TslData tareaData)
         {
             components = new List<string>();
             Labels = new List<string>();
             jiraProject = "ITT";
-            summary = "Seguridad WebUI - " + tareaData.appName;
-            description = tareaData.description;
+            summary = "Actualizar FrameWork y desabilitar forzado TLS " + tareaData.soluctionName;
+            description = SetDescription(tareaData);
             type = "Task";
-            priority = "Low";
+            priority = "High";
             components.Add("TIT_DeudaTecnica_Arquitectura");
             Labels.Add("ITT_seguridad");
             EpicLink = "ITT-474";

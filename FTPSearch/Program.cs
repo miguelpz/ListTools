@@ -21,15 +21,22 @@ namespace FTPSearch
     {
         static void Main(string[] args)
         {
+            // TSL SECTION
 
             JsonService js = new JsonService();
-            MassiveTasksService ms = new MassiveTasksService(new TlsRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
-            var result = ms.GetTlsListDTO();
-            var jsonToAdd = js.LoadJson<TlsTaskModelData>("TlsWithOutTeamToAdd.json");
+            MassiveTasksService ms = new MassiveTasksService(new TlsRepository(new ExcelIOService()), new JsonService(), new JiraRepository(),new InstallTasklingRepository(new ExcelIOService()));
+            //var result = ms.GetTlsListDTO();
+            //var jsonToAdd = js.LoadJson<TaskModelData>("TlsWithOutTeamToAdd.json");
 
-            var resultTls = result.ToList();
+            //var resultTls = result.ToList();
 
-            resultTls.AddRange(jsonToAdd);
+            //resultTls.AddRange(jsonToAdd);
+
+            // INSTALL TASKLING SECTION
+
+            var installTasklingResult = ms.GetInstallTasklingListDTO();
+
+
 
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FTPSearch.DTO
 {
-    public class TlsTaskModelData
+    public class TaskModelData
     {
         public string key { get; set; }
         public string appName { get; set; }

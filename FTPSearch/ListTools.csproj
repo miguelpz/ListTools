@@ -52,12 +52,14 @@
     <Compile Include="DTO\AutomatizaDTO.cs" />
     <Compile Include="DTO\MatchDTO.cs" />
     <Compile Include="DTO\TareaDTO.cs" />
-    <Compile Include="DTO\TlsTaskModelData.cs" />
+    <Compile Include="DTO\TaskModelData.cs" />
     <Compile Include="DTO\TslData.cs" />
     <Compile Include="Helpers\StringOperationsHelper.cs" />
     <Compile Include="Repositories\IJiraRepository.cs" />
-    <Compile Include="Repositories\ITlsRepository.cs" />
+    <Compile Include="Repositories\IMassiveRepository.cs" />
     <Compile Include="Repositories\JiraRepository.cs" />
+    <Compile Include="Repositories\InstallTasklingRepository.cs" />
+    <Compile Include="Repositories\MassiveTaskRepository.cs" />
     <Compile Include="Repositories\TlsRepository.cs" />
     <Compile Include="Services\AccessExternalService.cs" />
     <Compile Include="Services\ComponentUpdateService.cs" />

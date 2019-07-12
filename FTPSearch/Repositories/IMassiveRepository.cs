@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FTPSearch.Repositories
 {
-    public interface ITlsRepository
+    public interface IMassiveRepository
     {
-        IEnumerable<TlsTaskModelData> GetDataExcelFile();
+        IEnumerable<TaskModelData> GetDataExcelFile();
     }
 }

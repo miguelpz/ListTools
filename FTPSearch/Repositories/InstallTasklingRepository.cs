@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace FTPSearch.Repositories
 {
-    public class TlsRepository:IMassiveRepository
+    public class InstallTasklingRepository : IMassiveRepository
     {
         private IExcelIOService _excelIOService;
-        private const string fileKeyConfig = "TlsExcelFile";
+        private const string fileKeyConfig = "InstalTasklingExcelFile";
 
 
-        public TlsRepository(IExcelIOService excelIOService)
+        public InstallTasklingRepository(IExcelIOService excelIOService)
         {
             _excelIOService = excelIOService;
         }
@@ -28,13 +28,13 @@ namespace FTPSearch.Repositories
             List<string> IssueKeys = _excelIOService.GetAllNamesInColumn(fileKeyConfig, 1, 2, true).ToList();
             List<string> appNames = _excelIOService
                 .GetAllNamesInColumn(fileKeyConfig, 1, 3, true).Select(o =>
-                    o = StringOperationsHelper.DeleteString(o, "Actualizar FrameWork y desabilitar forzado TLS ")).ToList();
+                    o = StringOperationsHelper.DeleteString(o, "Instalar Taskling en  ")).ToList();
 
-            List<TaskModelData> tlsTaskModelDataList = new List<TaskModelData>();
+            List<TaskModelData> TaskModelDataList = new List<TaskModelData>();
 
             for (int x = 0; x < IssueKeys.Count - 1; x++)
             {
-                tlsTaskModelDataList.Add(
+                TaskModelDataList.Add(
 
                    new TaskModelData()
                    {
@@ -43,7 +43,7 @@ namespace FTPSearch.Repositories
                    });
             }
 
-            return tlsTaskModelDataList;
+            return TaskModelDataList;
         }
 
 

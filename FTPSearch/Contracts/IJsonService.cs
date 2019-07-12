@@ -9,8 +9,10 @@ namespace FTPSearch.Contracts
 {
     public interface IJsonService
     {
-        void SaveToJson(List<MatchDTO> list);
+        void SaveToJson<T>(string fileKeyConfig, List<T> list);
         List<MatchDTO> LoadToJson();
-        IEnumerable<string> LoadListJsonFile();
+        IEnumerable<string> LoadListJsonFile(string fileName);
+        List<T> LoadJson<T>(string jsonNameFile);
+        void SaveJson<T>(string jsonNameFile, List<T> list);
     }
 }

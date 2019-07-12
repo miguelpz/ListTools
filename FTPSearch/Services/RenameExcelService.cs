@@ -17,10 +17,10 @@ namespace FTPSearch.Contracts
             _excelIOService = ExcelIOService;
         }
         
-        public bool TrimNugetVersion(int sheet, int column, bool hasTitle)
+        public bool TrimNugetVersion(string fileKeyConfig, int sheet, int column, bool hasTitle)
         {
-            var result= _excelIOService.GetAllNamesInColumn(sheet, column, hasTitle).Select(o => o.TrimNugetVersion()).ToList();
-            return _excelIOService.WriteListInColumn(sheet, column+1, result, true); 
+            var result= _excelIOService.GetAllNamesInColumn(fileKeyConfig, sheet, column, hasTitle).Select(o => o.TrimNugetVersion()).ToList();
+            return _excelIOService.WriteListInColumn(fileKeyConfig, sheet, column+1, result, true); 
                    
         }
 

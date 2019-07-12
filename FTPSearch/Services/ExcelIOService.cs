@@ -14,11 +14,11 @@ namespace FTPSearch.Services
 {
     public class ExcelIOService : IExcelIOService
     {
-        public IEnumerable<string> GetAllNamesInColumn(int sheet, int column, bool hasTitle)
+        public IEnumerable<string> GetAllNamesInColumn(string fileKeyConfig, int sheet, int column, bool hasTitle)
         {
             List<string> nameList = new List<string>();
 
-            string filePath = ConfigurationManager.AppSettings["Excel"];
+            string filePath = ConfigurationManager.AppSettings[fileKeyConfig];
             Application xlApp = new Application();
             Workbook xlWorkBook = xlApp.Workbooks.Open(filePath);
             Worksheet xlWorkSheet = (Worksheet)xlWorkBook.Worksheets.get_Item(sheet);
@@ -32,6 +32,7 @@ namespace FTPSearch.Services
             if (hasTitle)
             {
                 initRow = 2;
+                totalRows++;
             }
 
             for (int rowCount = initRow; rowCount <= totalRows; rowCount++)
@@ -86,7 +87,7 @@ namespace FTPSearch.Services
 
 
 
-        public bool WriteListInColumn(int sheet, int column, IEnumerable<string> nameList, bool hasTitle)
+        public bool WriteListInColumn(string fileKeyConfig, int sheet, int column, IEnumerable<string> nameList, bool hasTitle)
         {
 
             //if (!IsColumEmpty(sheet,column))
@@ -94,7 +95,7 @@ namespace FTPSearch.Services
             //    throw new Exception("Column aren't Empty!");
             //}
 
-            string filePath = ConfigurationManager.AppSettings["ExcelWriteFile"];
+            string filePath = ConfigurationManager.AppSettings[fileKeyConfig];
 
             Application xlApp = new Application();
             object misValue = System.Reflection.Missing.Value;
@@ -133,11 +134,11 @@ namespace FTPSearch.Services
 
        
 
-        private bool IsColumEmpty(int sheet, int column)
+        private bool IsColumEmpty(string fileKeyConfig, int sheet, int column)
         {
             bool result = true;
 
-            if (GetAllNamesInColumn(sheet, column, true).Where(name => name.Length > 0).Count() > 0)
+            if (GetAllNamesInColumn(fileKeyConfig, sheet, column, true).Where(name => name.Length > 0).Count() > 0)
             {
                 return false;
             }                            

@@ -11,5 +11,9 @@ namespace FTPSearch.Repositories
         string GetOwnerFromApp(string app);
         void SendPost(string json);
         IEnumerable<string> GetTicketReport(IEnumerable<string> tickets);
+        IEnumerable<string> GetProductApp(IEnumerable<string> appNames);
+        IEnumerable<string> GetOwnerApp(IEnumerable<string> appNames);
+        IEnumerable<string> GetProjectApp(IEnumerable<string> appNames);
+        IEnumerable<string> GetTeamApp(IEnumerable<string> appNames);
     }
 }

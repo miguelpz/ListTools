@@ -57,5 +57,10 @@ namespace FTPSearch.Services
 
         }
 
+        //public string GetProductsFromAppList (IEnumerable<string> appNames)
+        //{
+
+        //}
+
     }
 }

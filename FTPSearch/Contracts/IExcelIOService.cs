@@ -8,7 +8,7 @@ namespace FTPSearch.Contracts
 {
     public interface IExcelIOService
     {
-        IEnumerable<string> GetAllNamesInColumn(int sheet, int column, bool hasTitle);
-        bool WriteListInColumn(int sheet, int column, IEnumerable<string> nameList, bool hasTitle);
+        IEnumerable<string> GetAllNamesInColumn(string fileName, int sheet, int column, bool hasTitle);
+        bool WriteListInColumn(string fileKeyConfig, int sheet, int column, IEnumerable<string> nameList, bool hasTitle);
     }
 }

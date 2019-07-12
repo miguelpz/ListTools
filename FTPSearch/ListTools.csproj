@@ -52,10 +52,15 @@
     <Compile Include="DTO\AutomatizaDTO.cs" />
     <Compile Include="DTO\MatchDTO.cs" />
     <Compile Include="DTO\TareaDTO.cs" />
+    <Compile Include="DTO\TlsTaskModelData.cs" />
     <Compile Include="DTO\TslData.cs" />
+    <Compile Include="Helpers\StringOperationsHelper.cs" />
     <Compile Include="Repositories\IJiraRepository.cs" />
+    <Compile Include="Repositories\ITlsRepository.cs" />
     <Compile Include="Repositories\JiraRepository.cs" />
+    <Compile Include="Repositories\TlsRepository.cs" />
     <Compile Include="Services\AccessExternalService.cs" />
+    <Compile Include="Services\ComponentUpdateService.cs" />
     <Compile Include="Services\ExcelIOService.cs" />
     <Compile Include="Contracts\IExcelIOService.cs" />
     <Compile Include="Contracts\IRenameExcelService.cs" />
@@ -74,7 +79,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileManagementService.cs" />
+    <Compile Include="Services\GetAndWriteCMDBInfoExcelService.cs" />
     <Compile Include="Services\JsonService.cs" />
+    <Compile Include="Services\MassiveTasksService.cs" />
     <Compile Include="Services\RenameExcelService.cs" />
     <Compile Include="Helpers\RenameExtensions.cs" />
   </ItemGroup>

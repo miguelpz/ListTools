@@ -8,6 +8,6 @@ namespace FTPSearch.Contracts
 {
     public interface IRenameExcelService
     {
-        bool TrimNugetVersion(int sheet, int column, bool hasTitle);
+        bool TrimNugetVersion(string fileKeyConfig, int sheet, int column, bool hasTitle);
     }
 }

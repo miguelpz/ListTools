@@ -11,77 +11,91 @@ namespace FTPSearch.Services
 {
     public class MassiveTasksService
     {
-        private readonly IMassiveRepository _tlsRepository;
-        private readonly IMassiveRepository _installTasklingRepository;
+        private readonly IMassiveRepository _massiveTaskRepository;
+        
 
         private readonly IJsonService _jsonService;
         private readonly IJiraRepository _jiraRepository;
 
-        public MassiveTasksService(IMassiveRepository TlsRepository, IJsonService JsonService, IJiraRepository JiraRepository,
-                                   IMassiveRepository InstallTasklingRepository)
+        private string tslWithOutNameFile = "TlsWithOutTeamFile.json";
+        private string installTasklingWithOutNameFile = "InstallTasklingWithOutTeamFile.json";
+        private string updateTasklingWithOutNameFile = "UpdateTasklingWithOutTeamFile.json";
+        private string appfabricWithOutNameFile = "AppfabricWithOutTeamFile.json";
+        private string updatePoolWithOutNameFile = "UpdatePoolWithOutTeamFile.json";
+        private string dataBaseWithOutNameFile = "DataBaseWithOutNameFile.json";
+
+
+        public MassiveTasksService(IMassiveRepository MassiveTaskRepository, IJsonService JsonService, IJiraRepository JiraRepository)
+                                   
         {
-            _tlsRepository = TlsRepository;
-            _installTasklingRepository = InstallTasklingRepository;
+            _massiveTaskRepository = MassiveTaskRepository;         
             _jsonService = JsonService;
             _jiraRepository = JiraRepository;
         }
 
         public IEnumerable<TaskModelData> GetTlsListDTO()
         {
-            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\TlsWithOutTeam.json");
-
-            List<TaskModelData> tlsList = (List<TaskModelData>)_tlsRepository.GetDataExcelFile();
-            List<TaskModelData> tslWithOutTeam = new List<TaskModelData>();
-
-            List<string> teamList = _jiraRepository.GetTeamApp(tlsList.ToList().Select(o => o.appName).ToList()).ToList();
-            
-            var res= teamList.Where(o => o == "").Count();
-           
-            for (int x = 0; x < tlsList.Count - 1; x++)
-            {
-                tlsList[x].team = teamList[x];
-            }
-
-            tslWithOutTeam = tlsList.Where(o => o.team == "").ToList();
-            _jsonService.SaveJson("TlsWithOutTeamFile.json", tslWithOutTeam);
-
-            tslWithOutTeam.ForEach(o =>
-            {
-                tlsList.Remove(o);
-            });
-
-            return tlsList;
-
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + tslWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetTlsExcelData();
+            return GetListDTO(taskList,tslWithOutNameFile);          
         }
 
         public IEnumerable<TaskModelData> GetInstallTasklingListDTO()
         {
-            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\TlsWithOutTeam.json");
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + installTasklingWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetInstallTaskLingExcelData();
+            return GetListDTO(taskList, installTasklingWithOutNameFile);
+        }
 
-            List<TaskModelData> taskList = (List<TaskModelData>)_installTasklingRepository.GetDataExcelFile();
-            List<TaskModelData> taskOutTeam = new List<TaskModelData>();
+        public IEnumerable<TaskModelData> GetUpdateTasklingListDTO()
+        {
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + updateTasklingWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetUpdateTaskLingExcelData();
+            return GetListDTO(taskList, updateTasklingWithOutNameFile);
+        }
+
+        public IEnumerable<TaskModelData> GetAppfabricTasklingListDTO()
+        {
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + appfabricWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetAppfabricExcelData();
+            return GetListDTO(taskList, appfabricWithOutNameFile);
+        }
+
+        public IEnumerable<TaskModelData> GetUpdatePoolListDTO()
+        {
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + updatePoolWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetUpdatePoolExcelData();
+            return GetListDTO(taskList, updatePoolWithOutNameFile);
+        }
+
+        public IEnumerable<TaskModelData> GetDataBaseListDTO()
+        {
+            Console.Write("Lista de tareas sin grupo de trabajo en: C:\\TasksFolder\\" + dataBaseWithOutNameFile);
+            List<TaskModelData> taskList = (List<TaskModelData>)_massiveTaskRepository.GetDataBaseExcelData();
+            return GetListDTO(taskList, dataBaseWithOutNameFile);
+        }
+
+
+        public IEnumerable<TaskModelData> GetListDTO(List<TaskModelData> taskList, string withOutNameFile)
+        {                      
+            List<TaskModelData> listWithOutTeam = new List<TaskModelData>();
 
             List<string> teamList = _jiraRepository.GetTeamApp(taskList.ToList().Select(o => o.appName).ToList()).ToList();
-
-            var res = teamList.Where(o => o == "").Count();
-
+                             
             for (int x = 0; x < taskList.Count - 1; x++)
             {
                 taskList[x].team = teamList[x];
             }
 
-            taskOutTeam = taskList.Where(o => o.team == "").ToList();
-            _jsonService.SaveJson("InstallTasklingWithOutTeamFile.json", taskOutTeam);
+            listWithOutTeam = taskList.Where(o => o.team == "" || o.team==null).ToList();
+            _jsonService.SaveJson(withOutNameFile, listWithOutTeam);
 
-            taskOutTeam.ForEach(o =>
+            listWithOutTeam.ForEach(o =>
             {
                 taskList.Remove(o);
             });
 
             return taskList;
-
-        }
-
-
+        }    
     }
 }

@@ -24,53 +24,35 @@ namespace FTPSearch
             // TSL SECTION
 
             JsonService js = new JsonService();
-            MassiveTasksService ms = new MassiveTasksService(new TlsRepository(new ExcelIOService()), new JsonService(), new JiraRepository(),new InstallTasklingRepository(new ExcelIOService()));
-            //var result = ms.GetTlsListDTO();
-            //var jsonToAdd = js.LoadJson<TaskModelData>("TlsWithOutTeamToAdd.json");
-
-            //var resultTls = result.ToList();
-
-            //resultTls.AddRange(jsonToAdd);
-
-            // INSTALL TASKLING SECTION
-
-            var installTasklingResult = ms.GetInstallTasklingListDTO();
+            MassiveTasksService ms = new MassiveTasksService(new MassiveTaskRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
+            MassiveTasksQueryResultsService mtqr = new MassiveTasksQueryResultsService();
 
 
 
+            var dataBaseResult = (List<TaskModelData>)ms.GetDataBaseListDTO(); ;
+            var updatePoolResult = (List<TaskModelData>)ms.GetUpdatePoolListDTO();
+            var appfabricResult = (List<TaskModelData>)ms.GetAppfabricTasklingListDTO();
+            var updateTaskLingResult = (List<TaskModelData>)ms.GetUpdateTasklingListDTO();
+            var tlsResult = (List<TaskModelData>)ms.GetTlsListDTO();
+            var installTaskLingResult = (List<TaskModelData>)ms.GetInstallTasklingListDTO();
+        
+            mtqr.AddFoundTeamList(dataBaseResult);
+            mtqr.AddFoundTeamList(updatePoolResult);
+            mtqr.AddFoundTeamList(appfabricResult);
+            mtqr.AddFoundTeamList(updateTaskLingResult);
+            mtqr.AddFoundTeamList(tlsResult);
+            mtqr.AddFoundTeamList(installTaskLingResult);
 
 
-
-
-
-
-
-            TlsRepository tlsRepo = new TlsRepository(new ExcelIOService());
-            JiraRepository jr = new JiraRepository();
-
+            var res = mtqr.GetAllTeams();
+            
 
 
 
 
+            
 
 
-
-
-            //JsonService js = new JsonService();
-
-            //var filled = (List<TlsTaskModelData>)js.LoadJson<TlsTaskModelData>("filled.json");
-            //var add = (List<TlsTaskModelData>)js.LoadJson<TlsTaskModelData>("add.json");
-            //var problem = new List<TlsTaskModelData>();
-
-
-            //filled.ForEach(f =>
-            //{
-            //    if (add.Where(o => o.key == f.key).Count() == 0)
-            //        problem.Add(f);
-
-            //});
-
-            //js.SaveJson("TlsTaskToCheck.json", problem);
 
 
 

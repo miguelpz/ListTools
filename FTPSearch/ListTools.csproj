@@ -58,9 +58,7 @@
     <Compile Include="Repositories\IJiraRepository.cs" />
     <Compile Include="Repositories\IMassiveRepository.cs" />
     <Compile Include="Repositories\JiraRepository.cs" />
-    <Compile Include="Repositories\InstallTasklingRepository.cs" />
     <Compile Include="Repositories\MassiveTaskRepository.cs" />
-    <Compile Include="Repositories\TlsRepository.cs" />
     <Compile Include="Services\AccessExternalService.cs" />
     <Compile Include="Services\ComponentUpdateService.cs" />
     <Compile Include="Services\ExcelIOService.cs" />
@@ -83,6 +81,7 @@
     <Compile Include="Services\FileManagementService.cs" />
     <Compile Include="Services\GetAndWriteCMDBInfoExcelService.cs" />
     <Compile Include="Services\JsonService.cs" />
+    <Compile Include="Services\MassiveTasksQueryResultsService.cs" />
     <Compile Include="Services\MassiveTasksService.cs" />
     <Compile Include="Services\RenameExcelService.cs" />
     <Compile Include="Helpers\RenameExtensions.cs" />

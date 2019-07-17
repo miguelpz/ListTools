@@ -23,28 +23,36 @@ namespace FTPSearch
         {
             // TSL SECTION
 
-            JsonService js = new JsonService();
-            MassiveTasksService ms = new MassiveTasksService(new MassiveTaskRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
+            //JsonService js = new JsonService();
+            //MassiveTasksService ms = new MassiveTasksService(new MassiveTaskRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
             MassiveTasksQueryResultsService mtqr = new MassiveTasksQueryResultsService();
 
+            //mtqr.GenerateDataBaseResult();
+            //mtqr.GenerateTlsResult();
+            mtqr.GenerateAppFabricPoolResult();
 
 
-            var dataBaseResult = (List<TaskModelData>)ms.GetDataBaseListDTO(); ;
-            var updatePoolResult = (List<TaskModelData>)ms.GetUpdatePoolListDTO();
-            var appfabricResult = (List<TaskModelData>)ms.GetAppfabricTasklingListDTO();
-            var updateTaskLingResult = (List<TaskModelData>)ms.GetUpdateTasklingListDTO();
-            var tlsResult = (List<TaskModelData>)ms.GetTlsListDTO();
-            var installTaskLingResult = (List<TaskModelData>)ms.GetInstallTasklingListDTO();
+
+
+
+            //var dataBaseResult = (List<TaskModelData>)ms.GetDataBaseListDTO(); ;
+
+
+            //var updatePoolResult = (List<TaskModelData>)ms.GetUpdatePoolListDTO();
+            //var appfabricResult = (List<TaskModelData>)ms.GetAppfabricTasklingListDTO();
+            //var updateTaskLingResult = (List<TaskModelData>)ms.GetUpdateTasklingListDTO();
+            //var tlsResult = (List<TaskModelData>)ms.GetTlsListDTO();
+            //var installTaskLingResult = (List<TaskModelData>)ms.GetInstallTasklingListDTO();
         
-            mtqr.AddFoundTeamList(dataBaseResult);
-            mtqr.AddFoundTeamList(updatePoolResult);
-            mtqr.AddFoundTeamList(appfabricResult);
-            mtqr.AddFoundTeamList(updateTaskLingResult);
-            mtqr.AddFoundTeamList(tlsResult);
-            mtqr.AddFoundTeamList(installTaskLingResult);
+            //mtqr.AddFoundTeamList(dataBaseResult);
+            //mtqr.AddFoundTeamList(updatePoolResult);
+            //mtqr.AddFoundTeamList(appfabricResult);
+            //mtqr.AddFoundTeamList(updateTaskLingResult);
+            //mtqr.AddFoundTeamList(tlsResult);
+            //mtqr.AddFoundTeamList(installTaskLingResult);
 
 
-            var res = mtqr.GetAllTeams();
+            //var res = mtqr.GetAllTeams();
             
 
 

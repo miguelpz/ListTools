@@ -14,5 +14,6 @@ namespace FTPSearch.Contracts
         IEnumerable<string> LoadListJsonFile(string fileName);
         List<T> LoadJson<T>(string jsonNameFile);
         void SaveJson<T>(string jsonNameFile, List<T> list);
+        void SaveJson(string jsonNameFile, string json);
     }
 }

@@ -3,6 +3,8 @@ using FTPSearch.DTO;
 using FTPSearch.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,6 +90,8 @@ namespace FTPSearch.Services
             }
 
             listWithOutTeam = taskList.Where(o => o.team == "" || o.team==null).ToList();
+            listWithOutTeam.ForEach(o => o.team = "Not Found");
+
             _jsonService.SaveJson(withOutNameFile, listWithOutTeam);
 
             listWithOutTeam.ForEach(o =>
@@ -95,7 +99,22 @@ namespace FTPSearch.Services
                 taskList.Remove(o);
             });
 
+            AddNoTeamFileFilledIdExist(taskList, withOutNameFile);
+
             return taskList;
-        }    
+        } 
+        
+        private List<TaskModelData>  AddNoTeamFileFilledIdExist (List<TaskModelData> taskList, string noTeamNameFile)
+        {
+            string workSpace = @ConfigurationManager.AppSettings["WorkSpace"];
+            string filledNameFile = noTeamNameFile.Replace(".json", "Filled.json");
+
+            if (File.Exists(workSpace + filledNameFile))
+            {
+                taskList.AddRange(_jsonService.LoadJson<TaskModelData>(filledNameFile));
+            }
+            return taskList;
+        }
+
     }
 }

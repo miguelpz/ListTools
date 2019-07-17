@@ -45,6 +45,13 @@ namespace FTPSearch.Services
             }
         }
 
+        public void SaveJson(string jsonNameFile, string json)
+        {
+           
+        }
+
+
+
 
 
 

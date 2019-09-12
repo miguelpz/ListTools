@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTools", "FTPSearch\ListTools.csproj", "{3CEEFB1C-238C-43F4-8D1B-2B2058965E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VY.AutomatedTools", "FTPSearch\VY.AutomatedTools.csproj", "{3CEEFB1C-238C-43F4-8D1B-2B2058965E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

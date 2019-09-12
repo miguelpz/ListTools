@@ -27,13 +27,13 @@ namespace FTPSearch.DTO
 
 
 
-        public TareaDTO(TslData tareaData)
+        public TareaDTO()
         {
             components = new List<string>();
             Labels = new List<string>();
             jiraProject = "ITT";
-            summary = "Actualizar FrameWork y desabilitar forzado TLS " + tareaData.soluctionName;
-            description = SetDescription(tareaData);
+            summary = "Actualizar FrameWork y desabilitar forzado TLS ";
+            description = "tarea de prueba";
             type = "Task";
             priority = "High";
             components.Add("TIT_DeudaTecnica_Arquitectura");

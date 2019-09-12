@@ -21,15 +21,27 @@ namespace FTPSearch
     {
         static void Main(string[] args)
         {
-            // TSL SECTION
 
-            //JsonService js = new JsonService();
-            //MassiveTasksService ms = new MassiveTasksService(new MassiveTaskRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
-            MassiveTasksQueryResultsService mtqr = new MassiveTasksQueryResultsService();
 
-            //mtqr.GenerateDataBaseResult();
-            //mtqr.GenerateTlsResult();
-            mtqr.GenerateAppFabricPoolResult();
+
+            JiraRepository jr = new JiraRepository();
+            jr.CreateTask(new List<TareaDTO>() { 
+                new TareaDTO()
+            }
+                );
+
+
+            
+            
+            //// TSL SECTION
+
+            ////JsonService js = new JsonService();
+            ////MassiveTasksService ms = new MassiveTasksService(new MassiveTaskRepository(new ExcelIOService()), new JsonService(), new JiraRepository());
+            //MassiveTasksQueryResultsService mtqr = new MassiveTasksQueryResultsService();
+
+            ////mtqr.GenerateDataBaseResult();
+            ////mtqr.GenerateTlsResult();
+            //mtqr.GenerateAppFabricPoolResult();
 
 
 

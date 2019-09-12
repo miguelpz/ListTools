@@ -54,6 +54,7 @@
     <Compile Include="DTO\ResultModel.cs" />
     <Compile Include="DTO\TareaDTO.cs" />
     <Compile Include="DTO\TaskModelData.cs" />
+    <Compile Include="DTO\TicketDTO.cs" />
     <Compile Include="DTO\TslData.cs" />
     <Compile Include="Helpers\StringOperationsHelper.cs" />
     <Compile Include="Repositories\IJiraRepository.cs" />

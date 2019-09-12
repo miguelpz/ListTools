@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FTPSearch.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,18 +15,37 @@ namespace FTPSearch.Repositories
     public class JiraRepository: IJiraRepository
     {
 
-        string URI = @ConfigurationManager.AppSettings["JiraEndPoint"];
+        string URIJiraCreateTickets = @ConfigurationManager.AppSettings["JiraCreateTicketsEndPoint"];
         string URIJiraTicketReport = @ConfigurationManager.AppSettings["JiraTicketsReporterEndPoint"];
         string URIJiraCMDBInfo = @ConfigurationManager.AppSettings["JiraTicketsCMDBInfoEndPoint"];
 
-        
+
+
+        public void CreateTask (IEnumerable<TareaDTO> tasksToCreate)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(URIJiraCreateTickets);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+            
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {                
+                streamWriter.Write(JsonConvert.SerializeObject(tasksToCreate));                
+                streamWriter.Flush();
+            }
+
+            var creationResult = (HttpWebResponse)httpWebRequest.GetResponse();
+        }
+
+
+
+
 
         public string GetOwnerFromApp(string app)
         {
             using (WebClient wc = new WebClient())
             {
                 wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                var HtmlResult = wc.UploadString(URI, app);
+                var HtmlResult = wc.UploadString(URIJiraCMDBInfo, app);
 
                 string result = JsonConvert.DeserializeObject<List<string>>(HtmlResult).FirstOrDefault();
                 if (result != null)
@@ -114,21 +134,7 @@ namespace FTPSearch.Repositories
 
 
 
-        public  void SendPost (string json )
-        {
-
-            using (WebClient wc = new WebClient())
-            {
-                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                wc.Headers[HttpRequestHeader.Accept] = "application/json";
-
-                var HtmlResult = wc.UploadString(URI, "POST", json);
-
-                
-            }
-
-
-        }
+       
 
 
 
